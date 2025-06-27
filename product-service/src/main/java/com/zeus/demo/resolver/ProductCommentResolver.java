@@ -17,7 +17,8 @@ public class ProductCommentResolver {
     private CommentClient commentClient;
 
     public ProductWithCommentsDto resolveData(Product product){
-        List<CommentDto> comments = commentClient.getCommentsByProductId(product.getId());
+        String token = "Bearer my-test-token-123";
+        List<CommentDto> comments = commentClient.getCommentsByProductId(product.getId(),token);
         ProductWithCommentsDto productWithComments = new ProductWithCommentsDto();
         productWithComments.setProduct(ProductMapper.of(product));
         productWithComments.setComments(comments);

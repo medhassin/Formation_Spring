@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private static final String TEST_TOKEN = "MY-TEST-TOKEN-123";
+    private static final String TEST_TOKEN = "my-test-token-123";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
