@@ -1,0 +1,46 @@
+Étapes pour Ubuntu/Debian :
+1. Mettre à jour les paquets existants
+
+sudo apt update
+sudo apt upgrade -y
+
+2. Installer les dépendances nécessaires
+
+sudo apt install -y ca-certificates curl gnupg lsb-release
+
+3. Ajouter la clé GPG officielle de Docker
+
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+4. Ajouter le dépôt Docker aux sources APT
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+5. Mettre à jour la liste des paquets
+
+sudo apt update
+
+6. Installer Docker Engine, CLI, et containerd
+
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+7. Vérifier que Docker fonctionne
+
+sudo systemctl status docker
+
+8. (Optionnel) Exécuter Docker sans sudo
+
+sudo usermod -aG docker $USER
+newgrp docker  # ou déconnectez-vous et reconnectez-vous
+
+9. Tester Docker
+
+docker run hello-world
+
+10. Consulter les containers
+
+docker ps -a
