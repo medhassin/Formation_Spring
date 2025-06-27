@@ -1,10 +1,12 @@
 package com.zeus.demo.services.impl;
 
+import com.zeus.demo.dto.ProductWithCommentsDto;
 import com.zeus.demo.form.AddProductForm;
 import com.zeus.demo.form.UpdateProductForm;
 import com.zeus.demo.models.Category;
 import com.zeus.demo.models.Product;
 import com.zeus.demo.repositories.ProductRepository;
+import com.zeus.demo.resolver.ProductCommentResolver;
 import com.zeus.demo.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ProductCommentResolver resolver ;
 
     @Override
     public Product addProduct(AddProductForm form) {
@@ -66,8 +71,11 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Long id) {
         Product product = getProductById(id);
         productRepository.delete(product);
-
     }
 
-
+    @Override
+    public ProductWithCommentsDto getProductWithComments(Long id) throws Exception {
+        Product product = getProductById(id);
+        return resolver.resolveData(product);
+    }
 }

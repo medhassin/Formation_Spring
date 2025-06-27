@@ -53,7 +53,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> getComments(Long productId) {
-        return List.of();
+        return commentRepository.findByProductId(productId);
     }
 
     @Override

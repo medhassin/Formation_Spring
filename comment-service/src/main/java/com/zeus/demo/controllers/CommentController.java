@@ -55,6 +55,11 @@ public class CommentController {
         response.put("deleted",Boolean.TRUE);
         return response;
     }
+    @GetMapping("/all")
+    public List<CommentDto> getComments(@Parameter(description = "Fetch comments by Product ID")@RequestParam(required = true) Long productId){
+        List<Comment> comments = commentService.getComments(productId);
+        return CommentMapper.of(comments);
+    }
 
 
 }

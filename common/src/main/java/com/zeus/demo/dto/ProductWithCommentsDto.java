@@ -9,5 +9,5 @@ import java.util.List;
 @Setter
 public class ProductWithCommentsDto {
     private ProductDto product;
-    private List<CommentDto> comment;
+    private List<CommentDto> comments;
 }

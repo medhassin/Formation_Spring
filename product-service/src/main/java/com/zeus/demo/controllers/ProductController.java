@@ -1,6 +1,7 @@
 package com.zeus.demo.controllers;
 
 import com.zeus.demo.dto.ProductDto;
+import com.zeus.demo.dto.ProductWithCommentsDto;
 import com.zeus.demo.form.AddProductForm;
 import com.zeus.demo.form.UpdateProductForm;
 import com.zeus.demo.mapper.ProductMapper;
@@ -66,6 +67,12 @@ public class ProductController {
         Map<String,Boolean> response = new HashMap<>();
         response.put("deleted",Boolean.TRUE);
         return response;
+    }
+
+    @GetMapping("/get-with-comments")
+    public ProductWithCommentsDto getProductWithComments(@Parameter(description = "The product's ID.") @RequestParam Long id) throws Exception{
+        ProductWithCommentsDto product= productService.getProductWithComments(id) ;
+        return product;
     }
 }
 
